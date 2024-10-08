@@ -6,9 +6,9 @@
 
 - link:
     ~/.vimrc: dotfiles/vimrc
-    ~/.bashrc: dotfiles/.bashrc
-    ~/.aliases: dotfiles/.aliases
-    ~/.gitconfig: dotfiles/.gitconfig
+    ~/.bashrc: dotfiles/bashrc
+    ~/.aliases: dotfiles/aliases
+    ~/.gitconfig: dotfiles/gitconfig
 
 - create:
     - ~/downloads
