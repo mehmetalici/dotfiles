@@ -15,4 +15,18 @@
     - ~/.vim/undo-history
 
 - shell:
+  # Install Miniconda
+
+  # Update Git submodules
   - [git submodule update --init --recursive]
+
+- pipx:
+    file: requirements-pipx.txt
+    stdout: false
+    stderr: true
+
+- vscodefile:
+    exec: code
+    file: vscodefile
+    uninstall-not-listed: false
+    
