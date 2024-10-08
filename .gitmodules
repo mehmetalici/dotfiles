@@ -9,3 +9,6 @@
 	url = https://github.com/bryant1410/dotbot-apt
 
 
+[submodule "dotbot-vscode"]
+	path = dotbot-vscode
+	url = https://github.com/rbrauner/dotbot-vscode.git
