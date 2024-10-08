@@ -1,0 +1,39 @@
+# ~/.bashrc
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Enable color support for ls and grep
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# Load custom aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi
+
+# Set default editor to vim
+export EDITOR=vim
+
+# Colorize the prompt
+PS1='\[\e[0;32m\]\u@\h \[\e[0;34m\]\w\[\e[0;33m\]$(__git_ps1)\[\e[0m\] \$ '
+
+# Better history settings
+export HISTCONTROL=ignoredups:erasedups
+export HISTSIZE=10000
+export HISTFILESIZE=20000
+shopt -s histappend
+
+# Enable auto-completion for Git commands
+if [ -f /usr/share/bash-completion/completions/git ]; then
+    . /usr/share/bash-completion/completions/git
+fi
+
+# Aliases for navigating directories faster
+alias ..="cd .."
+alias ...="cd ../.."
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi

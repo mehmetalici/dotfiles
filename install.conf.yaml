@@ -1,0 +1,18 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.vimrc: dotfiles/vimrc
+    ~/.bashrc: dotfiles/.bashrc
+    ~/.aliases: dotfiles/.aliases
+    ~/.gitconfig: dotfiles/.gitconfig
+
+- create:
+    - ~/downloads
+    - ~/.vim/undo-history
+
+- shell:
+  - [git submodule update --init --recursive]

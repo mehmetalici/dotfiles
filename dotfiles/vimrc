@@ -1,0 +1,53 @@
+" ~/.vimrc
+
+" Enable syntax highlighting
+syntax on
+
+" Show line numbers
+set number
+
+" Enable relative line numbers
+set relativenumber
+
+" Set tabs and indentation
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+
+" Enable mouse support in all modes
+set mouse=a
+
+" Show matching parentheses, braces, and brackets
+set showmatch
+
+" Highlight the current line
+set cursorline
+
+" Search settings
+set incsearch
+set ignorecase
+set smartcase
+
+" Enable clipboard access
+set clipboard=unnamedplus
+
+" Set the colorscheme to a basic scheme (you can customize this)
+colorscheme desert
+
+" Enable line wrapping
+set wrap
+
+" Map leader to space
+let mapleader = " "
+
+" Remap save and quit shortcuts
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+
+" Show command in the bottom line
+set showcmd
+
+" Disable backup and swap files
+set nobackup
+set noswapfile
