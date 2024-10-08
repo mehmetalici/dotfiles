@@ -27,4 +27,3 @@
     exec: code
     file: vscodefile
     uninstall-not-listed: false
-    
