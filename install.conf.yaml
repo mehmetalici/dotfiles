@@ -5,13 +5,15 @@
 - clean: ['~']
 
 - shell:
-  - [git submodule update --init --recursive]
-  - [curl -L https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.bash_git]
-  
+  - git submodule update --init --recursive
+  - bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)\" --unattended"
+
 - link:
     ~/.vimrc: dotfiles/vimrc
-    ~/.bashrc: dotfiles/bashrc
     ~/.aliases: dotfiles/aliases
+    ~/.bashrc: 
+      path: dotfiles/bashrc
+      force: true
     ~/.gitconfig: dotfiles/gitconfig
 
 - create:
@@ -22,3 +24,14 @@
     file: requirements-pipx.txt
     stdout: false
     stderr: true
+
+- apt:
+  - fd-find
+  - fasd
+
+- install-brew: true
+
+- brew:
+  - wyne/tap/fasder 
+  - fzf
+  - tldr

@@ -21,9 +21,6 @@ set mouse=a
 " Show matching parentheses, braces, and brackets
 set showmatch
 
-" Highlight the current line
-set cursorline
-
 " Search settings
 set incsearch
 set ignorecase

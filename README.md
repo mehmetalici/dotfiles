@@ -9,5 +9,5 @@ A collection of configuration files and settings to be applied for a fresh machi
 2. Copy install script from dotbot submodule and run it:
     ```bash
     cd dotfiles
-    ./install
+    sudo ./install
     ```
