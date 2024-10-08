@@ -22,8 +22,3 @@
     file: requirements-pipx.txt
     stdout: false
     stderr: true
-
-- vscodefile:
-    exec: code
-    file: vscodefile
-    uninstall-not-listed: false
