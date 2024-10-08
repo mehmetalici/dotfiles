@@ -1,5 +1,7 @@
 # ~/.bashrc
 
+source ~/.bash_git
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 

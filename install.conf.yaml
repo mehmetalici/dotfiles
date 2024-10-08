@@ -6,7 +6,8 @@
 
 - shell:
   - [git submodule update --init --recursive]
-
+  - [curl -L https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.bash_git]
+  
 - link:
     ~/.vimrc: dotfiles/vimrc
     ~/.bashrc: dotfiles/bashrc
