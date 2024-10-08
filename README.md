@@ -4,7 +4,7 @@ A collection of configuration files and settings to be applied for a fresh machi
 ## Installing
 1. Clone repository:
     ```bash
-    git clone git@github.com:mehmetalici/dotfiles.git
+    git clone --recurse-submodules git@github.com:mehmetalici/dotfiles.git
     ```
 2. Copy install script from dotbot submodule and run it:
     ```bash
