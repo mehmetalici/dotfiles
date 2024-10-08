@@ -4,6 +4,9 @@
 
 - clean: ['~']
 
+- shell:
+  - [git submodule update --init --recursive]
+
 - link:
     ~/.vimrc: dotfiles/vimrc
     ~/.bashrc: dotfiles/bashrc
@@ -13,12 +16,6 @@
 - create:
     - ~/downloads
     - ~/.vim/undo-history
-
-- shell:
-  # Install Miniconda
-
-  # Update Git submodules
-  - [git submodule update --init --recursive]
 
 - pipx:
     file: requirements-pipx.txt
