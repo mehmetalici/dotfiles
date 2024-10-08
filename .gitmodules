@@ -1,9 +1,11 @@
 [submodule "dotbot"]
-	path = dotbot
-	url = https://github.com/anishathalye/dotbot
+    path = dependencies/dotbot
+    url = https://github.com/anishathalye/dotbot
+
 [submodule "dotbot-pip"]
-	path = dotbot-pip
-	url = https://github.com/sobolevn/dotbot-pip.git
+    path = dependencies/dotbot-pip
+    url = https://github.com/sobolevn/dotbot-pip.git
+
 [submodule "dotbot-apt"]
-	path = dotbot-apt
-	url = https://github.com/bryant1410/dotbot-apt
+    path = dependencies/dotbot-apt
+    url = https://github.com/bryant1410/dotbot-apt
