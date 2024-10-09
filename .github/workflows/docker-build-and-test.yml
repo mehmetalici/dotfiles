@@ -23,5 +23,5 @@ jobs:
       - name: Run Docker Container and Execute Tests
         run: |
           # Run the container
-          docker run --rm --name test-container my-dotfiles-image:latest \
+          docker run --rm --name test-container dotfiles-test-image:latest \
           || (echo "Tests failed"; exit 1)
