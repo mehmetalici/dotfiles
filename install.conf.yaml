@@ -48,6 +48,7 @@
   - pipx
 
 
+# TODO: Remove pipx plugin since it accepts from file and we have only single dependency defined there. 
 - pipx:
     file: requirements-pipx.txt
     stdout: false

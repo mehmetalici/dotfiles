@@ -26,8 +26,8 @@ jobs:
       - name: Run Docker Container and Execute Tests
         run: |
           # Run the container
-          docker run --rm --name test-container dotfiles-test-image:latest 
-          
+          docker run --name test-container dotfiles-test-image:latest 
+
           # Capture the exit code
           EXIT_CODE=$?
 
