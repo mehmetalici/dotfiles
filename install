@@ -12,4 +12,28 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" --plugin-dir dependencies/dotbot-pip -p dependencies/dotbot-apt/apt.py  --plugin-dir dependencies/dotbot-brew -c "${CONFIG}" "${@}"
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" \
+    --plugin-dir dependencies/dotbot-pip \
+    -p dependencies/dotbot-apt/apt.py  \
+    --plugin-dir dependencies/dotbot-brew \
+    -c "${CONFIG}" "${@}"
+
+
+# Define colors
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+CYAN="\033[0;36m"
+RESET="\033[0m"
+
+
+# Improved echo messages with colors
+echo -e "${GREEN}Dotfiles installation complete!${RESET}"
+echo ""
+echo -e "${CYAN}Next steps:${RESET}"
+echo -e "${YELLOW}1. Restart your shell session to apply changes.${RESET}"
+echo -e "${YELLOW}2. Install GitHub Copilot in the CLI:${RESET}"
+echo -e "   ${CYAN}gh auth login && gh extension install github/copilot-cli${RESET}"
+echo -e "${YELLOW}3. Set up Copilot aliases:${RESET}"
+echo -e "   ${CYAN}echo 'eval \"\$(gh copilot alias -- bash)\"' >> ~/.bashrc${RESET}"
+echo -e "${YELLOW}4. Configure Copilot CLI to change the default execution confirmation:${RESET}"
+echo -e "   ${CYAN}gh copilot config${RESET}"

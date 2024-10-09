@@ -11,4 +11,4 @@
     url = https://github.com/bryant1410/dotbot-apt
 [submodule "dependencies/dotbot-brew"]
 	path = dependencies/dotbot-brew
-	url = https://github.com/wren/dotbot-brew.git
+	url = git@github.com:mehmetalici/dotbot-brew.git

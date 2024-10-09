@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+# Set color variables
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+set -e  # Exit immediately if a command exits with a non-zero status
+
+# Starting the test suite
+echo -e "${CYAN}Starting tests...${NC}"
+
+# Source bashrc to ensure environment variables are set
+source ~/.bashrc
+
+# Test apt installations
+echo -e "${CYAN}Testing apt installations...${NC}"
+if command -v fdfind &> /dev/null; then echo -e "${GREEN}fd-find installed${NC}"; else echo -e "${RED}fd-find NOT installed${NC}"; exit 1; fi
+if command -v fasd &> /dev/null; then echo -e "${GREEN}fasd installed${NC}"; else echo -e "${RED}fasd NOT installed${NC}"; exit 1; fi
+if command -v pipx &> /dev/null; then echo -e "${GREEN}pipx installed${NC}"; else echo -e "${RED}pipx NOT installed${NC}"; exit 1; fi
+
+# Test brew installations
+echo -e "${CYAN}Testing brew installations...${NC}"
+if brew list tldr &> /dev/null; then echo -e "${GREEN}tldr installed${NC}"; else echo -e "${RED}tldr NOT installed${NC}"; exit 1; fi
+if brew list gh &> /dev/null; then echo -e "${GREEN}gh installed via brew${NC}"; else echo -e "${RED}gh NOT installed via brew${NC}"; exit 1; fi
+
+# Alternatively, check if 'gh' command is available
+if command -v gh &> /dev/null; then echo -e "${GREEN}gh command available${NC}"; else echo -e "${RED}gh command NOT available${NC}"; exit 1; fi
+
+# Test shell installations (Homebrew, Miniconda, Oh My Bash)
+echo -e "${CYAN}Testing shell installations...${NC}"
+if command -v brew &> /dev/null; then echo -e "${GREEN}Homebrew installed${NC}"; else echo -e "${RED}Homebrew NOT installed${NC}"; exit 1; fi
+if [ -d "$HOME/miniconda3" ]; then echo -e "${GREEN}Miniconda installed${NC}"; else echo -e "${RED}Miniconda NOT installed${NC}"; exit 1; fi
+if [ -d "$HOME/.oh-my-bash" ]; then echo -e "${GREEN}Oh My Bash installed${NC}"; else echo -e "${RED}Oh My Bash NOT installed${NC}"; exit 1; fi
+
+# Test pip installations
+echo -e "${CYAN}Testing pip installations...${NC}"
+pip_requirements="/app/requirements-pip.txt"
+while IFS= read -r package; do
+    [[ "$package" =~ ^#.*$ ]] && continue
+    [ -z "$package" ] && continue
+    package_name=$(echo "$package" | cut -d'=' -f1)
+    if pip show "$package_name" &> /dev/null; then echo -e "${GREEN}$package_name installed via pip${NC}"; else echo -e "${RED}$package_name NOT installed via pip${NC}"; exit 1; fi
+done < "$pip_requirements"
+
+# Test pipx installations
+echo -e "${CYAN}Testing pipx installations...${NC}"
+pipx_requirements="/app/requirements-pipx.txt"
+while IFS= read -r package; do
+    [[ "$package" =~ ^#.*$ ]] && continue
+    [ -z "$package" ] && continue
+    package_name=$(echo "$package" | cut -d'=' -f1)
+    if pipx list | grep "$package_name" &> /dev/null; then echo -e "${GREEN}$package_name installed via pipx${NC}"; else echo -e "${RED}$package_name NOT installed via pipx${NC}"; exit 1; fi
+done < "$pipx_requirements"
+
+# Verify dotfiles symlinks
+echo -e "${CYAN}Verifying dotfiles...${NC}"
+if [ -L "$HOME/.vimrc" ]; then echo -e "${GREEN}.vimrc linked${NC}"; else echo -e "${RED}.vimrc NOT linked${NC}"; exit 1; fi
+if [ -L "$HOME/.bashrc" ]; then echo -e "${GREEN}.bashrc linked${NC}"; else echo -e "${RED}.bashrc NOT linked${NC}"; exit 1; fi
+if [ -L "$HOME/.aliases" ]; then echo -e "${GREEN}.aliases linked${NC}"; else echo -e "${RED}.aliases NOT linked${NC}"; exit 1; fi
+if [ -L "$HOME/.gitconfig" ]; then echo -e "${GREEN}.gitconfig linked${NC}"; else echo -e "${RED}.gitconfig NOT linked${NC}"; exit 1; fi
+
+# Test contents of dotfiles
+echo -e "${CYAN}Testing dotfiles contents...${NC}"
+
+# Test ~/.aliases
+echo -e "${CYAN}Testing ~/.aliases...${NC}"
+if grep -q "alias ll='ls -alF'" ~/.aliases; then echo -e "${GREEN}Alias ll found${NC}"; else echo -e "${RED}Alias ll NOT found${NC}"; exit 1; fi
+if grep -q "alias gs='git status --short'" ~/.aliases; then echo -e "${GREEN}Alias gs found${NC}"; else echo -e "${RED}Alias gs NOT found${NC}"; exit 1; fi
+
+# Test ~/.gitconfig
+echo -e "${CYAN}Testing ~/.gitconfig...${NC}"
+if grep -q "name = Mehmet Alici" ~/.gitconfig; then echo -e "${GREEN}Git username set${NC}"; else echo -e "${RED}Git username NOT set${NC}"; exit 1; fi
+if grep -q "email = calientesea@gmail.com" ~/.gitconfig; then echo -e "${GREEN}Git email set${NC}"; else echo -e "${RED}Git email NOT set${NC}"; exit 1; fi
+
+# Test ~/.vimrc
+echo -e "${CYAN}Testing ~/.vimrc...${NC}"
+if grep -q "syntax on" ~/.vimrc; then echo -e "${GREEN}Syntax highlighting enabled${NC}"; else echo -e "${RED}Syntax highlighting NOT enabled${NC}"; exit 1; fi
+if grep -q "set number" ~/.vimrc; then echo -e "${GREEN}Line numbers enabled${NC}"; else echo -e "${RED}Line numbers NOT enabled${NC}"; exit 1; fi
+
+# Test ~/.bashrc
+echo -e "${CYAN}Testing ~/.bashrc...${NC}"
+if grep -q ". ~/.aliases" ~/.bashrc; then echo -e "${GREEN}Aliases sourced in bashrc${NC}"; else echo -e "${RED}Aliases NOT sourced in bashrc${NC}"; exit 1; fi
+if grep -q "oh-my-bash.sh" ~/.bashrc; then echo -e "${GREEN}Oh My Bash initialized in bashrc${NC}"; else echo -e "${RED}Oh My Bash NOT initialized in bashrc${NC}"; exit 1; fi
+
+# All tests passed
+echo -e "${GREEN}All tests passed successfully.${NC}"

@@ -1,12 +1,24 @@
 - defaults:
     link:
       relink: true
+    brew:
+      stdout: false
+      stderr: true
 
 - clean: ['~']
 
+- create:
+  - ~/downloads
+  - ~/.vim/undo-history
+
 - shell:
+  - ./include/install-vscode
+  - NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   - git submodule update --init --recursive
-  - bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)\" --unattended"
+  - bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
+  - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/downloads/miniconda.sh
+  - bash ~/downloads/miniconda.sh -b -p $HOME/miniconda3
+
 
 - link:
     ~/.vimrc: dotfiles/vimrc
@@ -16,22 +28,21 @@
       force: true
     ~/.gitconfig: dotfiles/gitconfig
 
-- create:
-    - ~/downloads
-    - ~/.vim/undo-history
+
+- brew:
+  - tldr
+  - gh
+  - fd
+  - fasd
+  - pipx
+
+
+- pip:
+    file: requirements-pip.txt
+    stdout: false
+    stderr: true
 
 - pipx:
     file: requirements-pipx.txt
     stdout: false
     stderr: true
-
-- apt:
-  - fd-find
-  - fasd
-
-- install-brew: true
-
-- brew:
-  - wyne/tap/fasder 
-  - fzf
-  - tldr
