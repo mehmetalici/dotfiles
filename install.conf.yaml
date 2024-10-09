@@ -13,15 +13,17 @@
   - ~/.vim/undo-history
 
 
+- git:
+    '~/.fasd':
+      url: 'https://github.com/clvv/fasd.git'
+      description: 'Fasd, a command-line productivity booster that offers quick access to files and directories.'
+
+
 - shell:
   - ./include/install-vscode
+  - PREFIX=$HOME/.local make install -C ~/.fasd install && rm -rf ~/.fasd
   - command: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     stdin: true
-  - command: |
-      sudo add-apt-repository -y ppa:aacebedo/fasd &&
-      sudo apt update &&
-      sudo apt install -y fasd
-    stdin: true  
   - git submodule update --init --recursive
   - bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
   - command: |
