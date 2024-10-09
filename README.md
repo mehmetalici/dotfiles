@@ -1,4 +1,6 @@
 # dotfiles
+![CI](https://github.com/mehmetalici/dotfiles/actions/workflows/docker-build-and-test.yml/badge.svg)
+
 A collection of configuration files and settings to be applied for a fresh machine based on my personal taste.
 
 ## Installing

@@ -5,6 +5,7 @@
       stdout: false
       stderr: true
 
+
 - clean: ['~']
 
 
@@ -14,14 +15,14 @@
 
 
 - git:
-    '~/.fasd':
+    '~/fasd':
       url: 'https://github.com/clvv/fasd.git'
       description: 'Fasd, a command-line productivity booster that offers quick access to files and directories.'
 
 
 - shell:
   - ./include/install-vscode
-  - PREFIX=$HOME/.local make install -C ~/.fasd install && rm -rf ~/.fasd
+  - PREFIX=$HOME/.local make install -C ~/fasd install && rm -rf ~/fasd
   - command: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     stdin: true
   - git submodule update --init --recursive
