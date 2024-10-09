@@ -26,5 +26,21 @@ jobs:
       - name: Run Docker Container and Execute Tests
         run: |
           # Run the container
-          docker run --rm --name test-container dotfiles-test-image:latest \
-          || (echo "Tests failed"; exit 1)
+          docker run --rm --name test-container dotfiles-test-image:latest 
+          
+          # Capture the exit code
+          EXIT_CODE=$?
+
+          # Get logs from the container
+          docker logs test-container
+
+          # Remove the container
+          docker rm test-container
+
+          # Fail the step if tests failed
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "Tests failed."
+            exit $EXIT_CODE
+          else
+            echo "Tests passed successfully."
+          fi

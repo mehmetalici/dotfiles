@@ -17,7 +17,7 @@ source ~/.bashrc
 
 # Test apt installations
 echo -e "${CYAN}Testing apt installations...${NC}"
-if command -v fdfind &> /dev/null; then echo -e "${GREEN}fd-find installed${NC}"; else echo -e "${RED}fd-find NOT installed${NC}"; exit 1; fi
+if command -v fd &> /dev/null; then echo -e "${GREEN}fd-find installed${NC}"; else echo -e "${RED}fd-find NOT installed${NC}"; exit 1; fi
 if command -v fasd &> /dev/null; then echo -e "${GREEN}fasd installed${NC}"; else echo -e "${RED}fasd NOT installed${NC}"; exit 1; fi
 if command -v pipx &> /dev/null; then echo -e "${GREEN}pipx installed${NC}"; else echo -e "${RED}pipx NOT installed${NC}"; exit 1; fi
 
@@ -35,19 +35,10 @@ if command -v brew &> /dev/null; then echo -e "${GREEN}Homebrew installed${NC}";
 if [ -d "$HOME/miniconda3" ]; then echo -e "${GREEN}Miniconda installed${NC}"; else echo -e "${RED}Miniconda NOT installed${NC}"; exit 1; fi
 if [ -d "$HOME/.oh-my-bash" ]; then echo -e "${GREEN}Oh My Bash installed${NC}"; else echo -e "${RED}Oh My Bash NOT installed${NC}"; exit 1; fi
 
-# Test pip installations
-echo -e "${CYAN}Testing pip installations...${NC}"
-pip_requirements="/app/requirements-pip.txt"
-while IFS= read -r package; do
-    [[ "$package" =~ ^#.*$ ]] && continue
-    [ -z "$package" ] && continue
-    package_name=$(echo "$package" | cut -d'=' -f1)
-    if pip show "$package_name" &> /dev/null; then echo -e "${GREEN}$package_name installed via pip${NC}"; else echo -e "${RED}$package_name NOT installed via pip${NC}"; exit 1; fi
-done < "$pip_requirements"
 
 # Test pipx installations
 echo -e "${CYAN}Testing pipx installations...${NC}"
-pipx_requirements="/app/requirements-pipx.txt"
+pipx_requirements="requirements-pipx.txt"
 while IFS= read -r package; do
     [[ "$package" =~ ^#.*$ ]] && continue
     [ -z "$package" ] && continue

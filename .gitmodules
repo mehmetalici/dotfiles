@@ -12,3 +12,6 @@
 [submodule "dependencies/dotbot-brew"]
 	path = dependencies/dotbot-brew
 	url = git@github.com:mehmetalici/dotbot-brew.git
+[submodule "dependencies/dotbot-git"]
+	path = dependencies/dotbot-git
+	url = https://github.com/DrDynamic/dotbot-git.git

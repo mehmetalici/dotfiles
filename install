@@ -14,8 +14,9 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" \
     --plugin-dir dependencies/dotbot-pip \
-    -p dependencies/dotbot-apt/apt.py  \
+    --plugin-dir dependencies/dotbot-apt \
     --plugin-dir dependencies/dotbot-brew \
+    --plugin-dir dependencies/dotbot-git \
     -c "${CONFIG}" "${@}"
 
 
