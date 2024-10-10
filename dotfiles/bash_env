@@ -3,6 +3,6 @@ export PATH=$PATH:~/.local/bin
 
 if command -v gh &> /dev/null && gh copilot -h &> /dev/null; then
   eval "$(gh copilot alias -- bash)"
-else
-  echo "gh copilot is not installed or not available."
 fi
+
+# Conda modifies PATH in .bashrc and I don't want to move it here as conda init automatically puts it to .bashrc.
