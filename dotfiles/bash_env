@@ -1,3 +1,8 @@
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"  # This sets environment variables and modifies PATH for Homebrew
-export PATH=$PATH:~/.local/bineval 
-eval "$(gh copilot alias -- bash)"
+export PATH=$PATH:~/.local/bin 
+
+if command -v gh &> /dev/null && gh copilot -h &> /dev/null; then
+  eval "$(gh copilot alias -- bash)"
+else
+  echo "gh copilot is not installed or not available."
+fi
