@@ -12,6 +12,9 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
+# This is required to run the dotbot-brew plugin
+export PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
+
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" \
     --plugin-dir dependencies/dotbot-pip \
     --plugin-dir dependencies/dotbot-apt \

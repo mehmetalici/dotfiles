@@ -25,32 +25,30 @@
   - PREFIX=$HOME/.local make install -C ~/fasd install && rm -rf ~/fasd
   - command: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     stdin: true
-  - git submodule update --init --recursive
   - bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
   - command: |
       wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/downloads/miniconda.sh &&
-      bash ~/downloads/miniconda.sh -b -p $HOME/miniconda3
+      bash ~/downloads/miniconda.sh -b -p $HOME/miniconda3 &&
+      rm ~/downloads/miniconda.sh
+      ~/miniconda3/bin/conda init
+  - command: |
+      sudo apt update &&
+      sudo apt install -y pipx
+  - command: pipx install poetry  # We don't use pipx plugin since it cannot suppress stdout.
 
 
 - link:
     ~/.vimrc: dotfiles/vimrc
     ~/.aliases: dotfiles/aliases
-    ~/.bashrc: 
+    ~/.bashrc:  
       path: dotfiles/bashrc
-      force: true
+      force: true  # To replace bashrc from oh-my-bash
     ~/.gitconfig: dotfiles/gitconfig
+    ~/.bash_env: dotfiles/bash_env
 
 
-# TODO: Remove brew dependencies since we have already apt.
 - brew:
   - tldr
   - gh
   - fd
   - pipx
-
-
-# TODO: Remove pipx plugin since it accepts from file and we have only single dependency defined there. 
-- pipx:
-    file: requirements-pipx.txt
-    stdout: false
-    stderr: true
