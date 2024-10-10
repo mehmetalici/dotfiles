@@ -1,20 +1,7 @@
 # ~/.aliases
 
-# Navigation aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Git aliases
-alias gs='git status --short'
-alias ga='git add'
-alias gc='git commit -m'
-alias gp='git push'
-alias gl='git log --oneline --graph --decorate --all'
-
 # System aliases
 alias update='sudo apt update && sudo apt upgrade -y'
-alias c='clear'
 
 # Networking aliases
 alias ip='ip a'
@@ -23,3 +10,10 @@ alias ip='ip a'
 alias cls='clear && ls'
 alias h='history'
 alias vi='vim'
+
+alias c='fasd_cd -d'
+# `-d` option present for bash completion
+# function fasd_cd is defined in posix-alias
+alias v='f -e vim' # quick opening files with vim
+alias m='f -e mplayer' # quick opening files with mplayer
+alias o='a -e xdg-open' # quick opening files with xdg-openeval "$(gh copilot alias -- bash)"
