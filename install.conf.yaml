@@ -34,6 +34,7 @@
       sudo apt update &&
       sudo apt install -y pipx
   - command: pipx install poetry  # We don't use pipx plugin since it cannot suppress stdout.
+  - command: git config --global core.editor "vim"
 
 
 - link:
@@ -42,7 +43,6 @@
     ~/.bashrc:  
       path: dotfiles/bashrc
       force: true  # To replace bashrc from oh-my-bash
-    ~/.gitconfig: dotfiles/gitconfig
     ~/.bash_env: dotfiles/bash_env
 
 
