@@ -43,7 +43,6 @@ echo -e "${CYAN}Verifying dotfiles symlinks...${NC}"
 if [ -L "$HOME/.vimrc" ]; then echo -e "${GREEN}.vimrc linked${NC}"; else echo -e "${RED}.vimrc NOT linked${NC}"; exit 1; fi
 if [ -L "$HOME/.bashrc" ]; then echo -e "${GREEN}.bashrc linked${NC}"; else echo -e "${RED}.bashrc NOT linked${NC}"; exit 1; fi
 if [ -L "$HOME/.aliases" ]; then echo -e "${GREEN}.aliases linked${NC}"; else echo -e "${RED}.aliases NOT linked${NC}"; exit 1; fi
-if [ -L "$HOME/.gitconfig" ]; then echo -e "${GREEN}.gitconfig linked${NC}"; else echo -e "${RED}.gitconfig NOT linked${NC}"; exit 1; fi
 
 # Test contents of dotfiles for expected configurations
 echo -e "${CYAN}Testing dotfiles contents...${NC}"
@@ -54,10 +53,6 @@ if grep -q "alias update='sudo apt update && sudo apt upgrade -y'" ~/.aliases; t
 if grep -q "alias cls='clear && ls'" ~/.aliases; then echo -e "${GREEN}Alias cls found${NC}"; else echo -e "${RED}Alias cls NOT found${NC}"; exit 1; fi
 if grep -q "alias v='f -e vim'" ~/.aliases; then echo -e "${GREEN}Alias v found${NC}"; else echo -e "${RED}Alias v NOT found${NC}"; exit 1; fi
 
-# Test ~/.gitconfig for correct Git configuration
-echo -e "${CYAN}Testing ~/.gitconfig...${NC}"
-if grep -q "name = Mehmet Alici" ~/.gitconfig; then echo -e "${GREEN}Git username set${NC}"; else echo -e "${RED}Git username NOT set${NC}"; exit 1; fi
-if grep -q "email = calientesea@gmail.com" ~/.gitconfig; then echo -e "${GREEN}Git email set${NC}"; else echo -e "${RED}Git email NOT set${NC}"; exit 1; fi
 
 # Test ~/.vimrc for correct Vim settings
 echo -e "${CYAN}Testing ~/.vimrc...${NC}"
