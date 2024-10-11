@@ -1,6 +1,7 @@
 - defaults:
     link:
       relink: true
+      force: true
     brew:
       stdout: false
       stderr: true
@@ -40,9 +41,7 @@
 - link:
     ~/.vimrc: dotfiles/vimrc
     ~/.aliases: dotfiles/aliases
-    ~/.bashrc:  
-      path: dotfiles/bashrc
-      force: true  # To replace bashrc from oh-my-bash
+    ~/.bashrc: dotfiles/bashrc
     ~/.bash_env: dotfiles/bash_env
 
 
