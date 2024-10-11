@@ -32,7 +32,7 @@
       rm ~/downloads/miniconda.sh
   - command: |
       sudo apt update &&
-      sudo apt install -y pipx
+      sudo apt install -y pipx bat
   - command: pipx install poetry  # We don't use pipx plugin since it cannot suppress stdout.
   - command: git config --global core.editor "vim"
 
